@@ -1,6 +1,258 @@
 //
 // For guidance on how to add CSS and SCSS see:
 // https://prototype-kit.service.gov.uk/docs/adding-css-javascript-and-images
-// 
+//
 
-// Add extra styles here
+// Documentation layout
+
+.app-docs {
+  display: block;
+}
+
+.app-docs__sidebar {
+  padding: 20px 20px 30px;
+  border-bottom: 1px solid govuk-colour("black", $variant: "tint-80");
+}
+
+.app-docs__main {
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px 20px;
+}
+
+.app-docs__content {
+  padding-top: 20px;
+}
+
+.app-docs__content h2[id] {
+  scroll-margin-top: 20px;
+}
+
+.app-docs-search__form {
+  display: flex;
+  margin-bottom: 20px;
+}
+
+.app-docs-search__input {
+  border-right: 0;
+}
+
+.app-docs-search__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  min-height: 40px;
+  padding: 0;
+  border: 0;
+  background-color: govuk-colour("blue");
+  color: govuk-colour("white");
+  cursor: pointer;
+}
+
+.app-docs-search__button:hover {
+  background-color: govuk-colour("blue", $variant: "shade-50");
+}
+
+.app-docs-search__button:focus {
+  outline: 3px solid govuk-colour("yellow");
+  outline-offset: 0;
+  box-shadow: inset 0 0 0 2px govuk-colour("black");
+}
+
+.app-docs-search__icon {
+  display: block;
+  width: 20px;
+  height: 20px;
+}
+
+.app-docs-nav__list,
+.app-docs-nav__subnav {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.app-docs-nav__item {
+  margin: 0 -20px;
+}
+
+.app-docs-nav__row {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+}
+
+.app-docs-nav__link {
+  display: block;
+  flex: 1;
+  padding: 8px 50px 8px 16px;
+  border-left: 4px solid transparent;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.app-docs-nav__link--no-toggle {
+  padding-right: 20px;
+}
+
+.app-docs-nav__link:link,
+.app-docs-nav__link:visited {
+  color: govuk-colour("blue");
+}
+
+.app-docs-nav__link:hover {
+  color: govuk-colour("blue", $variant: "shade-50");
+  text-decoration: underline;
+}
+
+.app-docs-nav__link:focus {
+  color: govuk-colour("black");
+  background-color: govuk-colour("yellow");
+  box-shadow: 0 -2px govuk-colour("yellow"), 0 4px govuk-colour("black");
+  text-decoration: none;
+}
+
+.app-docs-nav__item--current {
+  background-color: govuk-colour("black", $variant: "tint-95");
+}
+
+.app-docs-nav__item--current .app-docs-nav__link--current {
+  border-left-color: govuk-colour("blue", $variant: "shade-50");
+  color: govuk-colour("blue", $variant: "shade-50");
+}
+
+.app-docs-nav__item--current .app-docs-nav__link--current:hover {
+  border-left-color: govuk-colour("blue", $variant: "shade-50");
+  color: govuk-colour("blue", $variant: "shade-50");
+}
+
+.app-docs-nav__item--current .app-docs-nav__link--current:focus {
+  border-left-color: govuk-colour("black");
+  color: govuk-colour("black");
+}
+
+.app-docs-nav__toggle {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 44px;
+  height: 44px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.app-docs-nav__toggle::after {
+  content: "";
+  display: block;
+  width: 8px;
+  height: 8px;
+  margin: 0 auto;
+  border: solid govuk-colour("black");
+  border-width: 0 2px 2px 0;
+  transform: translateY(-3px) rotate(45deg);
+}
+
+.app-docs-nav__item--open .app-docs-nav__toggle::after {
+  transform: translateY(3px) rotate(-135deg);
+}
+
+.app-docs-nav__toggle:focus {
+  outline: 3px solid govuk-colour("yellow");
+  outline-offset: 0;
+  box-shadow: inset 0 0 0 2px govuk-colour("black");
+}
+
+.app-docs-nav__subnav {
+  padding-bottom: 8px;
+}
+
+.app-docs-nav__sublink {
+  display: block;
+  padding: 8px 20px 8px 32px;
+  border-left: 4px solid transparent;
+  text-decoration: none;
+}
+
+.app-docs-nav__sublink:link,
+.app-docs-nav__sublink:visited {
+  color: govuk-colour("blue");
+}
+
+.app-docs-nav__sublink:hover {
+  color: govuk-colour("blue", $variant: "shade-50");
+  text-decoration: underline;
+}
+
+.app-docs-nav__sublink:focus {
+  color: govuk-colour("black");
+  background-color: govuk-colour("yellow");
+  box-shadow: 0 -2px govuk-colour("yellow"), 0 4px govuk-colour("black");
+  text-decoration: none;
+}
+
+.app-docs-nav__sublink--current:link,
+.app-docs-nav__sublink--current:visited {
+  border-left-color: govuk-colour("blue", $variant: "shade-50");
+  color: govuk-colour("blue", $variant: "shade-50");
+  font-weight: 700;
+}
+
+.app-docs-nav__sublink--current:hover {
+  border-left-color: govuk-colour("blue", $variant: "shade-50");
+  color: govuk-colour("blue", $variant: "shade-50");
+}
+
+.app-docs-nav__sublink--current:focus {
+  border-left-color: govuk-colour("black");
+  color: govuk-colour("black");
+}
+
+.app-docs-page-footer {
+  margin-top: auto;
+  padding: 10px 0 30px;
+}
+
+.app-docs-page-footer__list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.app-docs-page-footer__item {
+  margin: 0 20px 10px 0;
+}
+
+@media (min-width: 40.0625em) {
+  .app-docs {
+    display: flex;
+    align-items: stretch;
+    min-height: 70vh;
+  }
+
+  .app-docs__sidebar {
+    box-sizing: border-box;
+    width: 330px;
+    flex-shrink: 0;
+    padding: 20px 20px 40px;
+    border-right: 1px solid govuk-colour("black", $variant: "tint-80");
+    border-bottom: 0;
+  }
+
+  .app-docs__main {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-width: 0;
+    padding: 0 30px;
+  }
+
+  .app-docs__content {
+    padding-top: 30px;
+    max-width: 44em;
+  }
+}

@@ -1,0 +1,80 @@
+{% set docsNavCurrent = docsNavCurrent | default("overview") %}
+{% set docsNavSection = docsNavSection | default(docsNavCurrent) %}
+
+{% set docsNav = [
+  {
+    id: "overview",
+    text: "Overview",
+    href: "/v1/",
+    children: [
+      { id: "overview-allows-developers", text: "This API allows developers to", href: "/v1/#this-api-allows-developers-to" },
+      { id: "overview-errors", text: "Errors", href: "/v1/#errors" },
+      { id: "overview-testing", text: "Testing", href: "/v1/#testing" },
+      { id: "overview-fraud-prevention", text: "Fraud prevention / your obligations", href: "/v1/#fraud-prevention-your-obligations" },
+      { id: "overview-versioning", text: "Versioning", href: "/v1/#versioning" },
+      { id: "overview-endpoints", text: "Endpoints", href: "/v1/#endpoints" },
+      { id: "overview-support", text: "Support", href: "/v1/#support" }
+    ]
+  },
+  {
+    id: "quick-start",
+    text: "Quick start",
+    href: "/v1/quick-start"
+  },
+  {
+    id: "api-reference",
+    text: "API reference",
+    href: "/v1/api-reference",
+    children: [
+      { id: "api-reference-errors", text: "Errors", href: "/v1/api-reference/errors" },
+      { id: "api-reference-offline", text: "Offline functionality", href: "/v1/api-reference/offline-functionality" },
+      { id: "api-reference-rate-limits", text: "Rate limits and performance", href: "/v1/api-reference/rate-limits-and-performance" },
+      { id: "api-reference-endpoints", text: "Endpoints", href: "/v1/api-reference/endpoints" }
+    ]
+  }
+] %}
+
+<div class="app-docs-search">
+  <form class="app-docs-search__form" role="search" action="/v1/" method="get">
+    <label class="govuk-visually-hidden" for="docs-search">Search</label>
+    <input class="govuk-input app-docs-search__input" id="docs-search" name="q" type="search" placeholder="Search">
+    <button class="app-docs-search__button" type="submit">
+      <span class="govuk-visually-hidden">Search</span>
+      <svg class="app-docs-search__icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" focusable="false" aria-hidden="true">
+        <path fill="currentColor" d="m21.71 20.29-3.4-3.39A8.94 8.94 0 0 0 20 11a9 9 0 1 0-9 9 8.94 8.94 0 0 0 5.9-1.69l3.39 3.4a1 1 0 0 0 1.42-1.42ZM4 11a7 7 0 1 1 7 7 7 7 0 0 1-7-7Z"/>
+      </svg>
+    </button>
+  </form>
+</div>
+
+<nav class="app-docs-nav" aria-label="Technical documentation">
+  <ul class="app-docs-nav__list">
+    {% for item in docsNav %}
+      {% set hasChildren = item.children | length %}
+      {% set isSectionActive = docsNavSection == item.id %}
+      {% set isParentCurrent = docsNavCurrent == item.id %}
+      <li class="app-docs-nav__item{% if isSectionActive %} app-docs-nav__item--current app-docs-nav__item--open{% endif %}">
+        <div class="app-docs-nav__row">
+          <a class="app-docs-nav__link{% if not hasChildren %} app-docs-nav__link--no-toggle{% endif %}{% if isParentCurrent %} app-docs-nav__link--current{% endif %}" href="{{ item.href }}"{% if isParentCurrent %} aria-current="page"{% endif %}>
+            {{ item.text }}
+          </a>
+          {% if hasChildren %}
+            <button class="app-docs-nav__toggle" type="button" aria-expanded="{{ 'true' if isSectionActive else 'false' }}" aria-controls="docs-nav-{{ item.id }}">
+              <span class="govuk-visually-hidden">{{ item.text }} subnavigation</span>
+            </button>
+          {% endif %}
+        </div>
+        {% if hasChildren %}
+          <ul class="app-docs-nav__subnav" id="docs-nav-{{ item.id }}"{% if not isSectionActive %} hidden{% endif %}>
+            {% for child in item.children %}
+              {% set isChildCurrent = docsNavCurrent == child.id %}
+              <li class="app-docs-nav__subitem">
+                <a class="app-docs-nav__sublink{% if isChildCurrent %} app-docs-nav__sublink--current{% endif %}" href="{{ child.href }}"{% if isChildCurrent %} aria-current="page"{% endif %}>{{ child.text }}</a>
+              </li>
+            {% endfor %}
+          </ul>
+        {% endif %}
+      </li>
+    {% endfor %}
+  </ul>
+</nav>

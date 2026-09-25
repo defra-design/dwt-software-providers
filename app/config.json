@@ -1,5 +1,5 @@
 {
-  "serviceName": "Service name goes here",
+  "serviceName": "Digital waste management technical documentation",
   "useServiceNavigation": true,
   "plugins": {
     "govuk-frontend": {

@@ -1,0 +1,51 @@
+{#
+  Documentation layout. Use this for pages in /v1/.
+#}
+
+{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
+
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{% block govukServiceNavigation %}
+  {{ govukServiceNavigation({
+    serviceName: serviceName,
+    serviceUrl: "/v1/",
+    navigation: [
+      {
+        href: "#",
+        text: "Get started"
+      },
+      {
+        href: "/v1/",
+        text: "Documentation",
+        current: true
+      }
+    ]
+  }) }}
+{% endblock %}
+
+{% block container %}
+  <div class="app-docs">
+    <div class="app-docs__sidebar">
+      {% include "includes/docs-sidebar.html" %}
+    </div>
+    <div class="app-docs__main">
+      <main class="govuk-main-wrapper app-docs__content" id="main-content">
+        {% block content %}{% endblock %}
+      </main>
+      <nav class="app-docs-page-footer" aria-label="Contribute">
+        <ul class="app-docs-page-footer__list">
+          <li class="app-docs-page-footer__item">
+            <a class="govuk-link" href="#">View source</a>
+          </li>
+          <li class="app-docs-page-footer__item">
+            <a class="govuk-link" href="#">Report problem</a>
+          </li>
+          <li class="app-docs-page-footer__item">
+            <a class="govuk-link" href="#">GitHub Repo</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+{% endblock %}
