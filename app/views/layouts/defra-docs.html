@@ -1,0 +1,47 @@
+{#
+  Defra-branded documentation layout. Use this for pages in /v2/.
+  Same structure as layouts/docs.html (v1).
+#}
+
+{% extends "layouts/defra-branded.html" %}
+
+{% set serviceUrl = "/v2/" %}
+
+{% block defraNavigation %}
+  <nav class="defra-nav" aria-label="Menu">
+    <ul class="defra-nav__list">
+      <li class="defra-nav__item">
+        <a class="defra-nav__link" href="#">Get started</a>
+      </li>
+      <li class="defra-nav__item defra-nav__item--current">
+        <a class="defra-nav__link" href="/v2/" aria-current="page">Documentation</a>
+      </li>
+    </ul>
+  </nav>
+{% endblock %}
+
+{% block container %}
+  <div class="app-docs">
+    <div class="app-docs__sidebar">
+      {% include "includes/docs-sidebar-v2.html" %}
+    </div>
+    <div class="app-docs__main">
+      <main class="govuk-main-wrapper app-docs__content" id="main-content">
+        {% block content %}{% endblock %}
+      </main>
+      <nav class="app-docs-page-footer" aria-label="Contribute">
+        <ul class="app-docs-page-footer__list">
+          <li class="app-docs-page-footer__item">
+            <a class="govuk-link" href="#">View source</a>
+          </li>
+          <li class="app-docs-page-footer__item">
+            <a class="govuk-link" href="#">Report problem</a>
+          </li>
+          <li class="app-docs-page-footer__item">
+            <a class="govuk-link" href="#">GitHub Repo</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
+  </div>
+{% endblock %}

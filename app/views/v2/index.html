@@ -1,0 +1,125 @@
+{% set isHomePage = true %}
+{% set pageName = "Overview" %}
+{% set docsNavCurrent = "overview" %}
+{% set docsNavSection = "overview" %}
+
+{% extends "layouts/defra-docs.html" %}
+
+{% from "govuk/components/table/macro.njk" import govukTable %}
+
+{% block content %}
+  <h1 class="govuk-heading-xl">
+    {{ pageName }}
+  </h1>
+
+  {{ govukTable({
+    caption: "API details",
+    captionClasses: "govuk-table__caption--m",
+    firstCellIsHeader: true,
+    rows: [
+      [
+        { text: "API type" },
+        { text: "" }
+      ],
+      [
+        { text: "Latest version" },
+        { text: "" }
+      ],
+      [
+        { text: "Last updated" },
+        { text: "" }
+      ],
+      [
+        { text: "Sandbox base URL" },
+        { text: "" }
+      ],
+      [
+        { text: "Production base URL" },
+        { text: "" }
+      ]
+    ]
+  }) }}
+
+  <h2 class="govuk-heading-l" id="this-api-allows-developers-to" tabindex="-1">
+    This API allows developers to
+  </h2>
+
+  <ul class="govuk-list govuk-list--bullet">
+    <li>do this</li>
+    <li>and this</li>
+    <li>and this</li>
+  </ul>
+
+  <p class="govuk-body">
+    For information on how to connect to this API see the <a class="govuk-link" href="#">service guide</a>.
+  </p>
+
+  <h3 class="govuk-heading-m">
+    Not a developer?
+  </h3>
+
+  <p class="govuk-body">
+    If you are not a developer, use the <a class="govuk-link" href="#">guidance</a>.
+  </p>
+
+  <h2 class="govuk-heading-l" id="errors" tabindex="-1">
+    Errors
+  </h2>
+
+  <p class="govuk-body">
+    This is a prototype of the technical documentation. Content will be added here.
+  </p>
+
+  <h2 class="govuk-heading-l" id="testing" tabindex="-1">
+    Testing
+  </h2>
+
+  <p class="govuk-body">
+    This is a prototype of the technical documentation. Content will be added here.
+  </p>
+
+  <h2 class="govuk-heading-l" id="fraud-prevention-your-obligations" tabindex="-1">
+    Fraud prevention / your obligations
+  </h2>
+
+  <p class="govuk-body">
+    How to be compliant. This could include endpoints to check compliance, like HMRC’s ‘Retrieve VAT obligations’.
+  </p>
+
+  <h2 class="govuk-heading-l" id="versioning" tabindex="-1">
+    Versioning
+  </h2>
+
+  <p class="govuk-body">
+    This is a prototype of the technical documentation. Content will be added here.
+  </p>
+
+  <h2 class="govuk-heading-l" id="endpoints" tabindex="-1">
+    Endpoints
+  </h2>
+
+  {{ govukTable({
+    caption: "Available endpoints",
+    captionClasses: "govuk-table__caption--m",
+    head: [
+      { text: "Version" },
+      { text: "Environment" },
+      { text: "Endpoints" }
+    ],
+    rows: [
+      [
+        { text: "1.0 beta" },
+        { text: "Sandbox and production" },
+        { html: '<a class="govuk-link" href="/v2/api-reference/endpoints">View endpoints</a>' }
+      ]
+    ]
+  }) }}
+
+  <h2 class="govuk-heading-l" id="support" tabindex="-1">
+    Support
+  </h2>
+
+  <p class="govuk-body">
+    <a class="govuk-link" href="#">Contact support</a>
+  </p>
+{% endblock %}

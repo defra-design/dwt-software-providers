@@ -1,0 +1,61 @@
+{#
+  Defra-branded base layout (no GOV.UK header, crown, footer or favicon).
+  Branding: https://digital.defra.gov.uk/design/branding
+  Header/footer markup follows the Defra digital service manual.
+#}
+
+{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
+
+{% set htmlClasses = "app-defra" %}
+
+{% block pageTitle %}
+  {% if pageName and not isHomePage %}{{ pageName }} - {% endif %}{{ serviceName }}
+{% endblock %}
+
+{% block headIcons %}
+  <link rel="icon" sizes="48x48" href="/public/images/defra-favicon.ico">
+  <link rel="icon" sizes="any" href="/public/images/defra-favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/public/images/defra-apple-touch-icon.png">
+{% endblock %}
+
+{% block header %}
+  <header class="defra-header">
+    <div class="defra-header__inner">
+      <div class="defra-header__brand-group">
+        <img src="/public/images/defra-logo.svg" alt="" role="presentation" class="defra-header__logo">
+        <a href="{{ serviceUrl | default('/') }}" class="defra-header__service-name">
+          <span class="govuk-visually-hidden">Department for Environment, Food and Rural Affairs: </span>{{ serviceName }}
+        </a>
+      </div>
+    </div>
+  </header>
+  {% block defraNavigation %}{% endblock %}
+{% endblock %}
+
+{% block footer %}
+  <footer class="defra-footer">
+    <div class="defra-footer__inner">
+      <div class="defra-footer__meta">
+        <div class="defra-footer__meta-item">
+          <ul class="defra-footer__inline-list">
+            <li class="defra-footer__inline-list-item"><a class="defra-footer__link" href="#">Privacy</a></li>
+            <li class="defra-footer__inline-list-item"><a class="defra-footer__link" href="#">Cookies</a></li>
+            <li class="defra-footer__inline-list-item"><a class="defra-footer__link" href="#">Accessibility statement</a></li>
+            {% if GOVUKPrototypeKit.isDevelopment %}
+              <li class="defra-footer__inline-list-item"><a class="defra-footer__link" href="/manage-prototype">Manage your prototype</a></li>
+            {% endif %}
+          </ul>
+        </div>
+        <div class="defra-footer__meta-item">
+          <span class="defra-footer__licence-description">Maintained by the DWT Software Provider team at Defra</span>
+        </div>
+        <div class="defra-footer__meta-item">
+          <span class="defra-footer__licence-description">
+            All content is available under the
+            <a class="defra-footer__link" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated
+          </span>
+        </div>
+      </div>
+    </div>
+  </footer>
+{% endblock %}

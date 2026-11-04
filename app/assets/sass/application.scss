@@ -256,3 +256,220 @@
     max-width: 44em;
   }
 }
+
+// -----------------------------------------------------------------------------
+// Defra branding (v2) - scoped to html.app-defra so v1 is unaffected
+// https://digital.defra.gov.uk/design/branding
+// -----------------------------------------------------------------------------
+
+$app-defra-green: #00a33b; // Defra green: logo and decorative use only
+$app-defra-green-dark: #008531; // Passes WCAG AA for text and controls on white
+
+// Defra services off GOV.UK must not use GDS Transport
+html.app-defra,
+html.app-defra *:not(code, pre, kbd, samp) {
+  font-family: Helvetica, Arial, sans-serif;
+}
+
+html.app-defra {
+  background-color: govuk-colour("light-grey");
+}
+
+.defra-header {
+  background-color: govuk-colour("white");
+}
+
+.defra-header__inner {
+  display: flex;
+  align-items: center;
+  padding: 12px 20px; // left aligned with the docs sidebar
+}
+
+.defra-header__brand-group {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.defra-header__logo {
+  height: 60px;
+  width: auto;
+}
+
+html.app-defra .defra-header__service-name {
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.2;
+  text-decoration: none;
+
+  &:link,
+  &:visited,
+  &:hover {
+    color: $app-defra-green;
+  }
+
+  &:hover {
+    text-decoration: underline;
+    text-decoration-thickness: 3px;
+    text-underline-offset: 0.15em;
+  }
+
+  &:focus {
+    outline: 3px solid transparent;
+    background-color: govuk-colour("yellow");
+    box-shadow: 0 -2px govuk-colour("yellow"), 0 4px govuk-colour("black");
+    color: govuk-colour("black");
+    text-decoration: none;
+  }
+}
+
+@media (max-width: 40.0525em) {
+  .defra-header__logo {
+    height: 45px;
+  }
+
+  // Keep bold text at 18.66px+ so it still counts as "large text" for contrast
+  html.app-defra .defra-header__service-name {
+    font-size: 19px;
+  }
+}
+
+// Navigation bar
+.defra-nav {
+  background-color: $app-defra-green-dark;
+}
+
+.defra-nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0 8px;
+  list-style: none;
+}
+
+html.app-defra .defra-nav__link {
+  display: block;
+  padding: 12px 12px;
+  border-bottom: 4px solid transparent;
+  font-size: 16px;
+  line-height: 1.15;
+  text-decoration: none;
+
+  &:link,
+  &:visited,
+  &:hover,
+  &:active {
+    color: govuk-colour("white");
+  }
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  &:focus {
+    outline: 3px solid transparent;
+    background-color: govuk-colour("yellow");
+    box-shadow: none;
+    color: govuk-colour("black");
+    text-decoration: none;
+  }
+}
+
+html.app-defra .defra-nav__item--current .defra-nav__link {
+  border-bottom-color: govuk-colour("white");
+  background-color: rgba(0, 0, 0, 0.2);
+  font-weight: 700;
+
+  &:focus {
+    border-bottom-color: govuk-colour("black");
+    background-color: govuk-colour("yellow");
+  }
+}
+
+// Docs sidebar: green for search and current-page markers (sparingly)
+html.app-defra .app-docs-search__button {
+  background-color: $app-defra-green-dark;
+
+  &:hover {
+    background-color: darken($app-defra-green-dark, 8%);
+  }
+
+  &:focus {
+    background-color: govuk-colour("yellow");
+    color: govuk-colour("black");
+  }
+}
+
+html.app-defra .app-docs-nav__item--current .app-docs-nav__link--current,
+html.app-defra .app-docs-nav__item--current .app-docs-nav__link--current:hover,
+html.app-defra .app-docs-nav__sublink--current:link,
+html.app-defra .app-docs-nav__sublink--current:visited,
+html.app-defra .app-docs-nav__sublink--current:hover {
+  border-left-color: $app-defra-green-dark;
+}
+
+// Footer
+.defra-footer {
+  padding-top: 25px;
+  padding-bottom: 25px;
+  border-top: 10px solid $app-defra-green-dark;
+  background-color: govuk-colour("light-grey");
+}
+
+.defra-footer__inner {
+  padding: 0 20px; // left aligned with the header
+}
+
+.defra-footer__meta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.defra-footer__meta-item {
+  width: 100%;
+}
+
+.defra-footer__inline-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.defra-footer__inline-list-item {
+  display: inline-block;
+  margin-right: 20px;
+
+  &:last-child {
+    margin-right: 0;
+  }
+}
+
+html.app-defra .defra-footer__link,
+html.app-defra .defra-footer__licence-description {
+  font-size: 16px;
+  line-height: 1.25;
+  color: govuk-colour("black");
+}
+
+html.app-defra .defra-footer__link {
+  display: inline-block;
+  padding-block: 2px;
+
+  &:link,
+  &:visited {
+    color: govuk-colour("black");
+  }
+
+  &:hover {
+    text-decoration-thickness: max(3px, 0.1875rem, 0.12em);
+  }
+
+  &:focus {
+    outline: 3px solid transparent;
+    background-color: govuk-colour("yellow");
+    box-shadow: 0 -2px govuk-colour("yellow"), 0 4px govuk-colour("black");
+    text-decoration: none;
+  }
+}
