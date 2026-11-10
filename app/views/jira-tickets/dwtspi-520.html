@@ -1,0 +1,111 @@
+{% extends "layouts/prototype-hub.html" %}
+
+{% set pageName = "DWTSPI-520: Publish upcoming API changes on their own page" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({ text: "Back to Jira tickets", href: "/jira-tickets" }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Jira ticket DWTSPI-520</span>
+    <h1 class="govuk-heading-l">Publish upcoming API changes on their own page</h1>
+
+    <p class="govuk-body"><strong>Clickable prototype:</strong> <a class="govuk-link" href="/existing-docs/upcoming-changes">Existing docs 1, Upcoming API changes</a>. This is also the design reference.</p>
+
+    <h2 class="govuk-heading-m">Files for developers</h2>
+    <ul class="govuk-list govuk-list--bullet">
+      <li><a class="govuk-link" href="/public/dwtspi-520/upcoming-changes.md" download>upcoming-changes.md</a> (new page for <code>docs/</code>)</li>
+      <li><a class="govuk-link" href="/public/dwtspi-520/css-additions.css" download>css-additions.css</a> (add to <code>extra.css</code>)</li>
+      <li><a class="govuk-link" href="/public/dwtspi-520/api-specification-changes.md" download>api-specification-changes.md</a> (edits to the API specification page and <code>mkdocs.yml</code>)</li>
+    </ul>
+
+    <h2 class="govuk-heading-m">User story</h2>
+    <p class="govuk-body"><strong>As a</strong> software provider integrating with the Receipt of Waste API,<br><strong>I want</strong> to see upcoming API changes in one place, with their dates and what I need to do,<br><strong>so that</strong> I can plan my work and avoid my integration breaking.</p>
+
+    <h2 class="govuk-heading-m">Context</h2>
+    <p class="govuk-body">Upcoming changes are currently a section on the API specification page, between the specification links and the change log. This story moves them to a new “Upcoming API changes” page, linked from the left-hand navigation and from the API specification page.</p>
+    <p class="govuk-body">Each change is one entry with a type, status, a date for each environment, who it affects and what to do. The reason for the change is that the current section has no consistent structure, and does not say whether a change is breaking.</p>
+
+    <h2 class="govuk-heading-m">Components and patterns</h2>
+    <ul class="govuk-list govuk-list--bullet">
+      <li><strong>Tag</strong>: GOV.UK Design System. Used on the new page for Breaking and Non-breaking. Guidance: <a class="govuk-link" href="https://design-system.service.gov.uk/components/tag/">Tag</a>. Material for MkDocs has no tag colours, so the <code>govuk-tag</code> CSS is added to <code>extra.css</code>. No JavaScript.</li>
+    </ul>
+
+    <h2 class="govuk-heading-m">Colours</h2>
+    <p class="govuk-body">Colours are from the <a class="govuk-link" href="https://design-system.service.gov.uk/styles/colour/">GOV.UK Design System colour palette</a>.</p>
+    {{ govukTable({
+      caption: "Tag colours",
+      captionClasses: "govuk-visually-hidden",
+      firstCellIsHeader: true,
+      head: [{ text: "Name" }, { text: "Value" }, { text: "Source" }, { text: "Used for" }],
+      rows: [
+        [{ text: "green-shade-50" }, { text: "#083d29" }, { text: "GOV.UK" }, { text: "Non-breaking tag text" }],
+        [{ text: "green-tint-80" }, { text: "#cfe4dc" }, { text: "GOV.UK" }, { text: "Non-breaking tag background" }],
+        [{ text: "orange-shade-50" }, { text: "#7a3c1c" }, { text: "GOV.UK" }, { text: "Breaking tag text" }],
+        [{ text: "orange-tint-80" }, { text: "#fde4d7" }, { text: "GOV.UK" }, { text: "Breaking tag background" }]
+      ]
+    }) }}
+
+    <h2 class="govuk-heading-m">Design acceptance criteria</h2>
+    <h3 class="govuk-heading-s">Upcoming API changes page</h3>
+    <ol class="govuk-list">
+      <li>D1. The page has the H1 “Upcoming API changes”, then an introduction and a link to the Receipt of Waste API changelog.</li>
+      <li>D2. Each change is an H2, followed by these lines in this order: Type, Status, Test environment date, Production environment date, Affects.</li>
+      <li>D3. Type is shown as a tag: <code>green-shade-50</code> text on <code>green-tint-80</code> for Non-breaking, and <code>orange-shade-50</code> text on <code>orange-tint-80</code> for Breaking.</li>
+      <li>D4. After those lines, a short description, then an H3 “What you need to do”. A change can also have an H3 “Known issue”.</li>
+      <li>D5. The page ends with a link to the changelog and “Page last updated on” with a date.</li>
+      <li>D6. Each H2 has 2.8em of space above it. This applies to every H2 in the documentation.</li>
+    </ol>
+    <h3 class="govuk-heading-s">API specification page</h3>
+    <ol class="govuk-list">
+      <li>D7. The “Recent and Upcoming Changes” section is removed.</li>
+      <li>D8. The first line under “API Change Log” links to the upcoming API changes page.</li>
+    </ol>
+    <h3 class="govuk-heading-s">Navigation</h3>
+    <ol class="govuk-list">
+      <li>D9. “Upcoming API changes” is in the left-hand navigation, after the API specification page.</li>
+      <li>D10. The pages match the design reference.</li>
+    </ol>
+
+    <h2 class="govuk-heading-m">Acceptance criteria</h2>
+    <ol class="govuk-list govuk-list--number">
+      <li>Given a user is on the API specification page, when they select the link under API Change Log, then they go to the upcoming API changes page.</li>
+      <li>Given a user is on any documentation page, when they select “Upcoming API changes” in the left-hand navigation, then they go to that page and it is shown as the current page.</li>
+      <li>Given a user is on the upcoming API changes page, when they select the “Receipt of Waste API changelog” link, then they go to the changelog.</li>
+      <li>Given a user selects the link to field descriptions in the concentration entry, then they go to the API specification page.</li>
+      <li>The page is built from <code>docs/upcoming-changes.md</code> and the site builds with no broken links.</li>
+    </ol>
+
+    <h2 class="govuk-heading-m">Accessibility acceptance criteria</h2>
+    <ol class="govuk-list govuk-list--number">
+      <li>The page has one H1, and the change titles are H2s with “What you need to do” and “Known issue” as H3s, with no skipped levels (1.3.1, 2.4.6).</li>
+      <li>The page title is “Upcoming API changes - Defra Digital Waste Tracking Developer Guide” (2.4.2).</li>
+      <li>Breaking and Non-breaking are shown in the tag text, not by colour alone (1.4.1).</li>
+      <li>In forced colours mode the tag text is bold, so the tag can still be told apart from the text around it (1.4.11).</li>
+      <li>The navigation link has <code>aria-current="page"</code> on the upcoming API changes page, which Material for MkDocs adds (4.1.2).</li>
+      <li>Link text describes the destination. The links are “upcoming API changes”, “Receipt of Waste API changelog” and “Field descriptions and validation rules for <code>concentrationOperator</code>” (2.4.4).</li>
+      <li>There is no horizontal scrolling at 320px wide or at 200% zoom (1.4.4, 1.4.10).</li>
+      <li>Every function works with a keyboard, in a logical order, with the visible focus state from the site theme (2.1.1, 2.4.3, 2.4.7).</li>
+    </ol>
+    <h3 class="govuk-heading-s">How to test</h3>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Run an automated check (axe or WAVE).</li>
+      <li>Use the page with a keyboard only.</li>
+      <li>Use a screen reader (NVDA or VoiceOver) to check headings and the tag text.</li>
+      <li>Check at 320px wide and at 200% zoom, and in a forced colours mode.</li>
+    </ul>
+
+    <h2 class="govuk-heading-m">Out of scope</h2>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>The content of future changes. The page contains the concentration threshold change as the first real entry. The breaking change and other entries in the prototype are placeholder text.</li>
+      <li>Moving entries to the change log when they reach production (a process question, not a page change).</li>
+      <li>Letting software providers subscribe to updates.</li>
+      <li>Changes to the change log, which sits on the GitHub wiki.</li>
+    </ul>
+
+  </div>
+</div>
+{% endblock %}

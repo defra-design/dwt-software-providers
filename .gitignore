@@ -9,3 +9,7 @@ migrate.log
 # General ignores
 .DS_Store
 .idea
+
+# Local AI tooling - stays on this machine
+.cursor/
+.claude/
