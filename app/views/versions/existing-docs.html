@@ -1,0 +1,34 @@
+{% extends "layouts/prototype-hub.html" %}
+
+{% set pageName = "Existing docs 1" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({ text: "Back to prototype versions", href: "/" }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">API documentation prototype</span>
+    <h1 class="govuk-heading-l">Existing docs 1</h1>
+
+    <p class="govuk-body">Mock-up of the Receipt API Specification page on the existing GitHub Pages site (Material for MkDocs).</p>
+
+    <p class="govuk-body">
+      <span class="govuk-!-font-weight-bold">Date of last change:</span> 10 November 2026<br>
+      <span class="govuk-!-font-weight-bold">User research status:</span> Not tested
+    </p>
+
+    {{ govukButton({
+      html: 'View prototype<span class="govuk-visually-hidden"> for existing docs 1</span>',
+      href: "/existing-docs/api-specification",
+      classes: "govuk-button--secondary"
+    }) }}
+
+    <h2 class="govuk-heading-m">Changes and design rationale</h2>
+    <p class="govuk-body">[Add what changed in this version and why.]</p>
+
+  </div>
+</div>
+{% endblock %}

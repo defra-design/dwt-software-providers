@@ -1,0 +1,32 @@
+{% extends "layouts/prototype-hub.html" %}
+
+{% set pageName = "About this service" %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: { text: "Prototype" },
+    html: 'This is a prototype. It is not a real service.'
+  }) }}
+  {{ govukBackLink({ text: "Back", href: "/" }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">About this service</h1>
+
+    <p class="govuk-body">[Add a short description: the Digital Waste Tracking API documentation, who uses it and what they need to do with it.]</p>
+
+    <h2 class="govuk-heading-m">Who it's for</h2>
+    <p class="govuk-body">[Add each user group and what they need to do. For example, software providers integrating with the API.]</p>
+
+    <h2 class="govuk-heading-m">The problem we're solving</h2>
+    <p class="govuk-body">[Add why the documentation needs to change, what users do today and the problem that remains.]</p>
+
+    <h2 class="govuk-heading-m">How it fits with the wider service</h2>
+    <p class="govuk-body">[Add how the documentation relates to onboarding, support and the wider Digital Waste Tracking service.]</p>
+
+  </div>
+</div>
+{% endblock %}

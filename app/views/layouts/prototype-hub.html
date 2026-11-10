@@ -1,0 +1,62 @@
+{#
+  Layout for prototype hub pages (index, about this service, version pages).
+  White Defra header with logo and green band, and a Defra footer, as for
+  internal Defra sites that are not on GOV.UK.
+  https://digital.defra.gov.uk/design/branding
+#}
+
+{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
+
+{% set htmlClasses = "app-hub" %}
+
+{% block pageTitle %}
+  {% if pageName %}{{ pageName }} - {% endif %}{{ serviceName }}
+{% endblock %}
+
+{% block headIcons %}
+  <link rel="icon" sizes="48x48" href="/public/images/defra-favicon.ico">
+  <link rel="icon" sizes="any" href="/public/images/defra-favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/public/images/defra-apple-touch-icon.png">
+{% endblock %}
+
+{% block govukHeader %}
+  {# A div, not a header: the kit already wraps this block in a header. #}
+  <div class="app-defra-header">
+    <div class="govuk-width-container govuk-!-padding-top-3 govuk-!-padding-bottom-3">
+      <a href="/" class="app-defra-header__link">
+        <img src="/public/images/defra-logo.svg" alt="" role="presentation" class="app-defra-header__logo" width="86" height="45">
+        <span class="govuk-visually-hidden">Department for Environment, Food and Rural Affairs</span>
+      </a>
+    </div>
+  </div>
+{% endblock %}
+
+{% block govukServiceNavigation %}{% endblock %}
+
+{% block govukFooter %}
+  {# A div, not a footer: the kit already wraps this block in a footer. #}
+  <div class="app-defra-footer">
+    <div class="govuk-width-container">
+      <div class="app-defra-footer__meta">
+        <div class="app-defra-footer__meta-item">
+          <ul class="app-defra-footer__inline-list">
+            {% if GOVUKPrototypeKit.isDevelopment %}
+              <li class="app-defra-footer__inline-list-item">
+                <a class="app-defra-footer__link" href="/manage-prototype">Manage your prototype</a>
+              </li>
+            {% endif %}
+            <li class="app-defra-footer__inline-list-item">
+              <a class="app-defra-footer__link" href="/manage-prototype/clear-data">Clear data</a>
+            </li>
+          </ul>
+        </div>
+        <div class="app-defra-footer__meta-item">
+          <p class="app-defra-footer__licence">
+            All content is available under the
+            <a class="app-defra-footer__link" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3/" rel="license">Open Government Licence v3.0</a>, except where otherwise stated
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

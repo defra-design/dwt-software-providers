@@ -1,30 +1,110 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/prototype-hub.html" %}
 
-{% set pageName="Home" %}
+{% set pageName = "API documentation prototype" %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: { text: "Prototype" },
+    html: 'This is a prototype. It is not a real service.'
+  }) }}
+{% endblock %}
 
 {% block content %}
-
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    {% include "govuk-prototype-kit/includes/homepage-top.njk" %}
+    <h1 class="govuk-heading-xl">API documentation prototype</h1>
 
-    <h1 class="govuk-heading-xl">
-      {{ serviceName }}
-    </h1>
+    <p class="govuk-body">This page is the index for prototypes of the Digital Waste Tracking API documentation.</p>
 
-    <h2 class="govuk-heading-m">Prototype versions</h2>
     <ul class="govuk-list">
-      <li>
-        <a class="govuk-link" href="/v1/">Version 1: Technical documentation</a>
-      </li>
-      <li>
-        <a class="govuk-link" href="/v2/">Version 2: Technical documentation (Defra branding)</a>
-      </li>
+      <li><a class="govuk-link" href="/about-this-service">About this service</a></li>
+      {% if GOVUKPrototypeKit.isDevelopment %}
+        <li><a class="govuk-link" href="/manage-prototype">Manage your prototype</a></li>
+      {% endif %}
+      <li><a class="govuk-link" href="/manage-prototype/clear-data">Clear prototype data</a></li>
     </ul>
 
-    {% include "govuk-prototype-kit/includes/homepage-bottom.njk" %}
+    <h2 class="govuk-heading-l">Existing documentation site</h2>
+    <p class="govuk-body">Prototypes of pages on the existing GitHub Pages documentation site, which uses Material for MkDocs rather than the GOV.UK design system.</p>
+
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h3 class="govuk-summary-card__title govuk-!-font-size-24">Existing docs 1
+          {{ govukTag({ text: "Latest version", classes: "govuk-tag--blue govuk-!-margin-left-1" }) }}
+        </h3>
+      </div>
+      <div class="govuk-summary-card__content">
+        {{ govukButton({
+          html: 'View prototype<span class="govuk-visually-hidden"> for existing docs 1</span>',
+          href: "/existing-docs/api-specification",
+          classes: "govuk-button--secondary"
+        }) }}
+
+        <p class="govuk-body-s">Mock-up of the Receipt API Specification page, replicated from the live site so changes can be designed in context.</p>
+
+        <p class="govuk-body-s">
+          <span class="govuk-!-font-weight-bold">Date of last change:</span> 10 November 2026<br>
+          <span class="govuk-!-font-weight-bold">User research status:</span> Not tested
+        </p>
+
+        <ul class="govuk-list govuk-list--bullet govuk-body-s">
+          <li><a class="govuk-link" href="/versions/existing-docs">Changes and design rationale for existing docs 1</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <h2 class="govuk-heading-l">Technical documentation template</h2>
+    <p class="govuk-body">Prototypes using the GOV.UK technical documentation layout.</p>
+
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h3 class="govuk-summary-card__title govuk-!-font-size-24">Version 2</h3>
+      </div>
+      <div class="govuk-summary-card__content">
+        {{ govukButton({
+          html: 'View prototype<span class="govuk-visually-hidden"> for version 2</span>',
+          href: "/v2/",
+          classes: "govuk-button--secondary"
+        }) }}
+
+        <p class="govuk-body-s">Version 1 with Defra branding: the Defra header, green navigation bar and footer in place of the GOV.UK header.</p>
+
+        <p class="govuk-body-s">
+          <span class="govuk-!-font-weight-bold">Date of last change:</span> 4 November 2026<br>
+          <span class="govuk-!-font-weight-bold">User research status:</span> Not tested
+        </p>
+
+        <ul class="govuk-list govuk-list--bullet govuk-body-s">
+          <li><a class="govuk-link" href="/versions/v2">Changes and design rationale for version 2</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="govuk-summary-card">
+      <div class="govuk-summary-card__title-wrapper">
+        <h3 class="govuk-summary-card__title govuk-!-font-size-24">Version 1</h3>
+      </div>
+      <div class="govuk-summary-card__content">
+        {{ govukButton({
+          html: 'View prototype<span class="govuk-visually-hidden"> for version 1</span>',
+          href: "/v1/",
+          classes: "govuk-button--secondary"
+        }) }}
+
+        <p class="govuk-body-s">First technical documentation prototype, with the documentation layout and information architecture.</p>
+
+        <p class="govuk-body-s">
+          <span class="govuk-!-font-weight-bold">Date of last change:</span> 25 September 2026<br>
+          <span class="govuk-!-font-weight-bold">User research status:</span> Not tested
+        </p>
+
+        <ul class="govuk-list govuk-list--bullet govuk-body-s">
+          <li><a class="govuk-link" href="/versions/v1">Changes and design rationale for version 1</a></li>
+        </ul>
+      </div>
+    </div>
+
   </div>
 </div>
-
 {% endblock %}

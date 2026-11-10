@@ -1,0 +1,34 @@
+{% extends "layouts/prototype-hub.html" %}
+
+{% set pageName = "Version 2" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({ text: "Back to prototype versions", href: "/" }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">API documentation prototype</span>
+    <h1 class="govuk-heading-l">Version 2</h1>
+
+    <p class="govuk-body">Version 1 reworked with Defra branding: Defra header, green navigation bar and footer.</p>
+
+    <p class="govuk-body">
+      <span class="govuk-!-font-weight-bold">Date of last change:</span> 4 November 2026<br>
+      <span class="govuk-!-font-weight-bold">User research status:</span> Not tested
+    </p>
+
+    {{ govukButton({
+      html: 'View prototype<span class="govuk-visually-hidden"> for version 2</span>',
+      href: "/v2/",
+      classes: "govuk-button--secondary"
+    }) }}
+
+    <h2 class="govuk-heading-m">Changes and design rationale</h2>
+    <p class="govuk-body">[Add what changed in this version and why.]</p>
+
+  </div>
+</div>
+{% endblock %}
