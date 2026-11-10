@@ -1038,18 +1038,25 @@
 <p>If you send both <code>concentration</code> and <code>concentrationOperator</code> as null, you'll get a 400 response saying the concentration must be specified. Leave out <code>concentrationOperator</code> instead. The movement will be created with a warning that a concentration value is recommended. We'll fix this on [date / in release X].</p>
 <p><a href="/existing-docs/apiSpecifications">Field descriptions and validation rules for <code>concentrationOperator</code></a></p>
 
-<h2 id="example-breaking-change">Example breaking change</h2>
+<h2 id="require-a-carrier-registration-number">Require a carrier registration number</h2>
 <p><strong>Type:</strong> <strong class="govuk-tag govuk-tag--orange">Breaking</strong></p>
 <p><strong>Status:</strong> Planned</p>
 <p><strong>Test environment date:</strong> 15 December 2026</p>
 <p><strong>Production environment date:</strong> February 2027 (to be confirmed)</p>
 <p><strong>Affects:</strong> All software providers submitting receipt data</p>
-<p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis.</p>
+<p>This change makes the carrier registration number a required field. Requests that leave it out will be rejected. We're making it required because regulators need to identify the carrier for every movement.</p>
 <h3 id="what-you-need-to-do-2">What you need to do</h3>
-<p>Your current integration will stop working unless you update it before the production date. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas.</p>
+<p>Your current integration will stop working unless you update it before the production date. Send the carrier registration number with every receipt. Test your changes in the external test environment from 15 December 2026.</p>
 
-<h2 id="another-upcoming-change-on-the-page-2">Another upcoming change on the page</h2>
-<p>Lorem ipsum dolor sit amet consectetur adipiscing elit. Quisque faucibus ex sapien vitae pellentesque sem placerat. In id cursus mi pretium tellus duis convallis. Tempus leo eu aenean sed diam urna tempor. Pulvinar vivamus fringilla lacus nec metus bibendum egestas. Iaculis massa nisl malesuada lacinia integer nunc posuere. Ut hendrerit semper vel class aptent taciti sociosqu. Ad litora torquent per conubia nostra inceptos himenaeos.</p>
+<h2 id="updated-error-message-for-invalid-dates">Updated error message for invalid dates</h2>
+<p><strong>Type:</strong> <strong class="govuk-tag govuk-tag--green">Non-breaking</strong></p>
+<p><strong>Status:</strong> Planned</p>
+<p><strong>Test environment date:</strong> 12 January 2027</p>
+<p><strong>Production environment date:</strong> February 2027 (to be confirmed)</p>
+<p><strong>Affects:</strong> Software providers who show API error messages to their users</p>
+<p>We're making the 400 response for an invalid date more specific. It will name the field that has the problem, for example “receiptDate must be a valid date in the format YYYY-MM-DD”. The response code does not change.</p>
+<h3 id="what-you-need-to-do-3">What you need to do</h3>
+<p>Your current integration will keep working. If you match on the text of error messages, check that your code still works with the new wording.</p>
 
 <p>Past changes currently in production appear in the <a href="https://github.com/DEFRA/waste-tracking-service/wiki/Receipt-of-Waste-API-Changelog">Receipt of Waste API changelog</a>.</p>
 <p><br>Page last updated on November 10th 2026.</p>
