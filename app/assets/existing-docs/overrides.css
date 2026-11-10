@@ -1,0 +1,5 @@
+/* Proposed addition to tech_docs_template/assets/stylesheets/extra.css:
+   more space above each h2 (Material default is 1.6em). */
+.md-typeset h2 {
+  margin-top: 2.8em;
+}
