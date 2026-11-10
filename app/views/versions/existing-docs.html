@@ -25,9 +25,37 @@
       href: "/existing-docs/api-specification",
       classes: "govuk-button--secondary"
     }) }}
+    {{ govukButton({
+      html: 'View upcoming changes page<span class="govuk-visually-hidden"> for existing docs 1</span>',
+      href: "/existing-docs/upcoming-changes",
+      classes: "govuk-button--secondary"
+    }) }}
 
     <h2 class="govuk-heading-m">Changes and design rationale</h2>
-    <p class="govuk-body">[Add what changed in this version and why.]</p>
+
+    <h3 class="govuk-heading-s">Context</h3>
+    <p class="govuk-body">The API specification page has a “Recent and upcoming changes” section. These are draft recommendations on how to write and manage future change notifications. They need sense checking against the current API update process.</p>
+
+    <h3 class="govuk-heading-s">Changes</h3>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>New “Upcoming changes” page in the API tab and left-hand navigation.</li>
+      <li>Removed “Recent and upcoming changes” from the API specification page, which now links to the new page.</li>
+      <li>Each change is one entry with a type, status, a date for each environment, who it affects and what the user needs to do.</li>
+      <li>Lifecycle: planned, then in the external test environment, then in production. When a change reaches production it moves, with the same title and text, to the change log. Users see it in one place at a time.</li>
+    </ul>
+
+    <h3 class="govuk-heading-s">Questions</h3>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Does the change log only show changes once they are in production, or also for updates to the external test environment?</li>
+      <li>Can notifications be moved into the change log as they enter production?</li>
+      <li>Can software providers subscribe to updates? They are unlikely to remember to check the page.</li>
+    </ul>
+
+    <h3 class="govuk-heading-s">Comments</h3>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>The change log is not in date order. For example, the 21 October 2026 change is at the bottom.</li>
+      <li>The change log is hard to navigate and we need to understand how it works.</li>
+    </ul>
 
   </div>
 </div>
