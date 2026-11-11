@@ -1020,11 +1020,11 @@
 <p>Past changes currently live in production are listed in the <a href="https://github.com/DEFRA/waste-tracking-service/wiki/Receipt-of-Waste-API-Changelog">Receipt of Waste API changelog</a>.</p>
 
 <h2 id="report-hazardous-and-pops-concentrations-as-a-threshold">Report hazardous and POPs concentrations as a threshold</h2>
-<p><strong>Type:</strong> <strong class="govuk-tag govuk-tag--green">Non-breaking</strong></p>
-<p><strong>Status:</strong> Planned</p>
-<p><strong>Test environment date:</strong> 30 November 2026</p>
-<p><strong>Production environment date:</strong> January 2027 (to be confirmed)</p>
-<p><strong>Affects:</strong> Receivers who accept hazardous or POPs waste</p>
+<p><strong>Type:</strong> <strong class="govuk-tag govuk-tag--green">Non-breaking</strong><br>
+<strong>Status:</strong> Planned<br>
+<strong>Test environment date:</strong> 30 November 2026<br>
+<strong>Production environment date:</strong> January 2027 (to be confirmed)<br>
+<strong>Affects:</strong> Receivers who accept hazardous or POPs waste</p>
 <p>This change allows you to report a concentration as a threshold (for example, "greater than 100 mg/kg") as well as an exact value. We've added this because users told us they often only know a limit, and the regulators support the change.</p>
 <h3 id="what-you-need-to-do">What you need to do</h3>
 <p>Your current integration will keep working. If your users receive hazardous or POPs waste, we recommend adding this as soon as possible, so they can report thresholds.</p>
@@ -1039,21 +1039,21 @@
 <p><a href="/existing-docs/apiSpecifications">Field descriptions and validation rules for <code>concentrationOperator</code></a></p>
 
 <h2 id="require-a-carrier-registration-number">Require a carrier registration number</h2>
-<p><strong>Type:</strong> <strong class="govuk-tag govuk-tag--orange">Breaking</strong></p>
-<p><strong>Status:</strong> Planned</p>
-<p><strong>Test environment date:</strong> 15 December 2026</p>
-<p><strong>Production environment date:</strong> February 2027 (to be confirmed)</p>
-<p><strong>Affects:</strong> All software providers submitting receipt data</p>
+<p><strong>Type:</strong> <strong class="govuk-tag govuk-tag--orange">Breaking</strong><br>
+<strong>Status:</strong> Planned<br>
+<strong>Test environment date:</strong> 15 December 2026<br>
+<strong>Production environment date:</strong> February 2027 (to be confirmed)<br>
+<strong>Affects:</strong> All software providers submitting receipt data</p>
 <p>This change makes the carrier registration number a required field. Requests that leave it out will be rejected. We're making it required because regulators need to identify the carrier for every movement.</p>
 <h3 id="what-you-need-to-do-2">What you need to do</h3>
 <p>Your current integration will stop working unless you update it before the production date. Send the carrier registration number with every receipt. Test your changes in the external test environment from 15 December 2026.</p>
 
 <h2 id="updated-error-message-for-invalid-dates">Updated error message for invalid dates</h2>
-<p><strong>Type:</strong> <strong class="govuk-tag govuk-tag--green">Non-breaking</strong></p>
-<p><strong>Status:</strong> Planned</p>
-<p><strong>Test environment date:</strong> 12 January 2027</p>
-<p><strong>Production environment date:</strong> February 2027 (to be confirmed)</p>
-<p><strong>Affects:</strong> Software providers who show API error messages to their users</p>
+<p><strong>Type:</strong> <strong class="govuk-tag govuk-tag--green">Non-breaking</strong><br>
+<strong>Status:</strong> Planned<br>
+<strong>Test environment date:</strong> 12 January 2027<br>
+<strong>Production environment date:</strong> February 2027 (to be confirmed)<br>
+<strong>Affects:</strong> Software providers who show API error messages to their users</p>
 <p>We're making the 400 response for an invalid date more specific. It will name the field that has the problem, for example “receiptDate must be a valid date in the format YYYY-MM-DD”. The response code does not change.</p>
 <h3 id="what-you-need-to-do-3">What you need to do</h3>
 <p>Your current integration will keep working. If you match on the text of error messages, check that your code still works with the new wording.</p>

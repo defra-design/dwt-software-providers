@@ -6,6 +6,11 @@
 
 {% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
 
+{% block headIcons %}
+  <link rel="icon" sizes="48x48" href="/public/images/defra-favicon.ico">
+  <link rel="icon" sizes="any" href="/public/images/defra-favicon.svg" type="image/svg+xml">
+{% endblock %}
+
 {% block govukServiceNavigation %}
   {{ govukServiceNavigation({
     serviceName: serviceName,
