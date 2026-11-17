@@ -1,0 +1,30 @@
+{# Material for MkDocs cookie message. Wording can be set by the page; see layouts/existing-docs.html. #}
+    <form class="md-consent" data-md-component="consent" id="__consent" hidden>
+      <div class="md-consent__overlay"></div>
+      <aside class="md-consent__inner">
+        <div class="md-consent__form md-typeset">
+          <h4>{{ docsConsentTitle | default("Cookies on the Digital Waste Tracking developer guide") }}</h4>
+          {% if docsConsentDescription %}{{ docsConsentDescription | safe }}{% else %}
+          <p>We use Google Analytics cookies to understand how people use this guide, so we can improve it. These cookies are optional.</p>
+          <p>You can change your cookie settings at any time using the &ldquo;Change cookie settings&rdquo; link in the footer.</p>
+          {% endif %}
+          <input class="md-toggle" type="checkbox" id="__settings">
+          <div class="md-consent__settings">
+            <ul class="task-list">
+              <li class="task-list-item">
+                <label class="task-list-control">
+                  <input type="checkbox" name="analytics" checked>
+                  <span class="task-list-indicator"></span>
+                  Google Analytics
+                </label>
+              </li>
+            </ul>
+          </div>
+          <div class="md-consent__controls">
+            <button class="md-button md-button--primary">{{ docsConsentAccept | default("Accept") }}</button>
+            <button type="reset" class="md-button md-button--primary">{{ docsConsentReject | default("Reject") }}</button>
+            <label class="md-button" for="__settings">{{ docsConsentManage | default("Manage settings") }}</label>
+          </div>
+        </div>
+      </aside>
+    </form>

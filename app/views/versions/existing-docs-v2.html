@@ -31,6 +31,12 @@
       classes: "govuk-button--secondary"
     }) }}
 
+    {{ govukButton({
+      html: 'View option C: Material cookie message with GOV.UK-style wording<span class="govuk-visually-hidden"> for v2: Cookies for Google Analytics</span>',
+      href: "/existing-docs-v2/option-c/api-specification?reset-cookies",
+      classes: "govuk-button--secondary"
+    }) }}
+
     {{ govukInsetText({
       html: "The choice is stored in your browser, as on the live site, so the message will not reappear. To see it again, select “Change cookie settings” in the footer, or clear this site’s data in your browser. The buttons below clear any saved choice first. To do this on any page, add ?reset-cookies to the address."
     }) }}
@@ -68,6 +74,16 @@
       <li>Banner and cookies page use GOV.UK Frontend components compiled into a separate stylesheet, so Material’s styles are untouched.</li>
     </ul>
     <p class="govuk-body">The banner and cookies page are draft copy, not agreed wording. Cookie names and expiry times (<code>_ga</code> and <code>_ga_&lt;container-id&gt;</code>, 2 years) are the standard Google Analytics 4 values and need checking against the real configuration.</p>
+
+    <h3 class="govuk-heading-s">Option C: Material for MkDocs cookie message with GOV.UK-style wording</h3>
+    <p class="govuk-body">The same Material component as option A, with content supplied by the team. It needs no template override.</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Title: “Cookies for Digital waste tracking developer guide”.</li>
+      <li>Description: “We use some essential cookies to make this service work.” and “We’d also like to use analytics cookies so we can understand how you use the service and make improvements.”</li>
+      <li>Buttons: “Accept analytics cookies” and “Reject analytics cookies”.</li>
+      <li>“View cookies” replaces “Manage settings”. It reveals the Google Analytics checkbox in the message, rather than going to a cookies page.</li>
+    </ul>
+    <p class="govuk-body">Still different from the GOV.UK pattern: it is a modal, has no confirmation message or cookies page, and the checkbox is ticked by default. “View cookies” does not take the user to a page, which may not match what the label suggests. The “Accept analytics cookies” button also saves the checkbox state, so it may be unclear if the user has unticked the box. The text does not say how to change settings later, though the footer link still does this.</p>
 
     <h3 class="govuk-heading-s">Questions</h3>
     <ul class="govuk-list govuk-list--bullet">

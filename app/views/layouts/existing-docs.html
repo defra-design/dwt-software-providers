@@ -8,6 +8,8 @@
     docsCurrent    "api-specification" or "upcoming-changes" to mark the navigation; leave unset otherwise
     docsGovukTags  true to load the GOV.UK-style tag CSS
     docsHideCookieBanner  true on the cookies page, so the banner is not shown there
+    docsConsentTitle, docsConsentDescription, docsConsentAccept, docsConsentReject, docsConsentManage
+                   optional wording for the Material cookie message (see includes/existing-docs-material-consent.html)
     docsCookies    "material" for the Material cookie message, "govuk" for the GOV.UK banner, or unset
   Put the page content in {% block docsArticle %}.
 
@@ -1078,33 +1080,7 @@
 
     </div>
     {% if docsCookies == "material" %}
-    <form class="md-consent" data-md-component="consent" id="__consent" hidden>
-      <div class="md-consent__overlay"></div>
-      <aside class="md-consent__inner">
-        <div class="md-consent__form md-typeset">
-          <h4>Cookies on the Digital Waste Tracking developer guide</h4>
-          <p>We use Google Analytics cookies to understand how people use this guide, so we can improve it. These cookies are optional.</p>
-          <p>You can change your cookie settings at any time using the &ldquo;Change cookie settings&rdquo; link in the footer.</p>
-          <input class="md-toggle" type="checkbox" id="__settings">
-          <div class="md-consent__settings">
-            <ul class="task-list">
-              <li class="task-list-item">
-                <label class="task-list-control">
-                  <input type="checkbox" name="analytics" checked>
-                  <span class="task-list-indicator"></span>
-                  Google Analytics
-                </label>
-              </li>
-            </ul>
-          </div>
-          <div class="md-consent__controls">
-            <button class="md-button md-button--primary">Accept</button>
-            <button type="reset" class="md-button md-button--primary">Reject</button>
-            <label class="md-button" for="__settings">Manage settings</label>
-          </div>
-        </div>
-      </aside>
-    </form>
+    {% include "includes/existing-docs-material-consent.html" %}
     <script>
       /* Show the cookie message on first visit, as Material for MkDocs does on the live site. */
       /* Add ?reset-cookies to the address to clear the saved choice (prototype aid only). */
