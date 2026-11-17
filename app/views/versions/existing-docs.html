@@ -1,6 +1,6 @@
 {% extends "layouts/prototype-hub.html" %}
 
-{% set pageName = "Existing docs 1" %}
+{% set pageName = "v1: Upcoming changes" %}
 
 {% block beforeContent %}
   {{ govukBackLink({ text: "Back to prototype versions", href: "/" }) }}
@@ -11,7 +11,7 @@
   <div class="govuk-grid-column-two-thirds">
 
     <span class="govuk-caption-l">API documentation prototype</span>
-    <h1 class="govuk-heading-l">Existing docs 1</h1>
+    <h1 class="govuk-heading-l">v1: Upcoming changes</h1>
 
     <p class="govuk-body">Mock-up of the Receipt API Specification page on the existing GitHub Pages site (Material for MkDocs).</p>
 
@@ -21,12 +21,12 @@
     </p>
 
     {{ govukButton({
-      html: 'View prototype<span class="govuk-visually-hidden"> for existing docs 1</span>',
+      html: 'View prototype<span class="govuk-visually-hidden"> for v1: Upcoming changes</span>',
       href: "/existing-docs/api-specification",
       classes: "govuk-button--secondary"
     }) }}
     {{ govukButton({
-      html: 'View upcoming changes page<span class="govuk-visually-hidden"> for existing docs 1</span>',
+      html: 'View upcoming changes page<span class="govuk-visually-hidden"> for v1: Upcoming changes</span>',
       href: "/existing-docs/upcoming-changes",
       classes: "govuk-button--secondary"
     }) }}

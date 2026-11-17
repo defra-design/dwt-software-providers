@@ -1,0 +1,52 @@
+<a href="https://github.com/DEFRA/waste-tracking-service/raw/main/docs/api-specification.md" title="View source of this page" class="md-content__button md-icon">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M17 18c.56 0 1 .44 1 1s-.44 1-1 1-1-.44-1-1 .44-1 1-1m0-3c-2.73 0-5.06 1.66-6 4 .94 2.34 3.27 4 6 4s5.06-1.66 6-4c-.94-2.34-3.27-4-6-4m0 6.5a2.5 2.5 0 0 1-2.5-2.5 2.5 2.5 0 0 1 2.5-2.5 2.5 2.5 0 0 1 2.5 2.5 2.5 2.5 0 0 1-2.5 2.5M9.27 20H6V4h7v5h5v4.07c.7.08 1.36.25 2 .49V8l-6-6H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h4.5a8.2 8.2 0 0 1-1.23-2"></path></svg>
+    </a>
+  
+
+
+<h1 id="upcoming-api-changes">Upcoming API changes</h1>
+<p>This page summarises upcoming changes to the Receipt of Waste API.</p>
+<p>Past changes currently live in production are listed in the <a href="https://github.com/DEFRA/waste-tracking-service/wiki/Receipt-of-Waste-API-Changelog">Receipt of Waste API changelog</a>.</p>
+
+<h2 id="report-hazardous-and-pops-concentrations-as-a-threshold">Report hazardous and POPs concentrations as a threshold</h2>
+<p><strong>Type:</strong> <strong class="govuk-tag govuk-tag--green">Non-breaking</strong><br>
+<strong>Status:</strong> Planned<br>
+<strong>Test environment date:</strong> 30 November 2026<br>
+<strong>Production environment date:</strong> January 2027 (to be confirmed)<br>
+<strong>Affects:</strong> Receivers who accept hazardous or POPs waste</p>
+<p>This change allows you to report a concentration as a threshold (for example, "greater than 100 mg/kg") as well as an exact value. We've added this because users told us they often only know a limit, and the regulators support the change.</p>
+<h3 id="what-you-need-to-do">What you need to do</h3>
+<p>Your current integration will keep working. If your users receive hazardous or POPs waste, we recommend adding this as soon as possible, so they can report thresholds.</p>
+<p>To report a threshold, use the new <code>concentrationOperator</code> field on hazardous and POPs components in <code>wasteItems</code>:</p>
+<ul>
+<li>put the number in <code>concentration</code> (mg/kg, greater than zero, no symbol or unit)</li>
+<li>put the symbol in <code>concentrationOperator</code>: <code>&gt;</code> for hazardous components, <code>&lt;</code> or <code>&gt;</code> for POPs</li>
+</ul>
+<p>Leave out <code>concentrationOperator</code> when you're reporting an exact value, or when <code>concentration</code> is null.</p>
+<h3 id="known-issue">Known issue</h3>
+<p>If you send both <code>concentration</code> and <code>concentrationOperator</code> as null, you'll get a 400 response saying the concentration must be specified. Leave out <code>concentrationOperator</code> instead. The movement will be created with a warning that a concentration value is recommended. We'll fix this on [date / in release X].</p>
+<p><a href="{{ docsBase }}/apiSpecifications">Field descriptions and validation rules for <code>concentrationOperator</code></a></p>
+
+<h2 id="require-a-carrier-registration-number">Require a carrier registration number</h2>
+<p><strong>Type:</strong> <strong class="govuk-tag govuk-tag--orange">Breaking</strong><br>
+<strong>Status:</strong> Planned<br>
+<strong>Test environment date:</strong> 15 December 2026<br>
+<strong>Production environment date:</strong> February 2027 (to be confirmed)<br>
+<strong>Affects:</strong> All software providers submitting receipt data</p>
+<p>This change makes the carrier registration number a required field. Requests that leave it out will be rejected. We're making it required because regulators need to identify the carrier for every movement.</p>
+<h3 id="what-you-need-to-do-2">What you need to do</h3>
+<p>Your current integration will stop working unless you update it before the production date. Send the carrier registration number with every receipt. Test your changes in the external test environment from 15 December 2026.</p>
+
+<h2 id="updated-error-message-for-invalid-dates">Updated error message for invalid dates</h2>
+<p><strong>Type:</strong> <strong class="govuk-tag govuk-tag--green">Non-breaking</strong><br>
+<strong>Status:</strong> Planned<br>
+<strong>Test environment date:</strong> 12 January 2027<br>
+<strong>Production environment date:</strong> February 2027 (to be confirmed)<br>
+<strong>Affects:</strong> Software providers who show API error messages to their users</p>
+<p>We're making the 400 response for an invalid date more specific. It will name the field that has the problem, for example “receiptDate must be a valid date in the format YYYY-MM-DD”. The response code does not change.</p>
+<h3 id="what-you-need-to-do-3">What you need to do</h3>
+<p>Your current integration will keep working. If you match on the text of error messages, check that your code still works with the new wording.</p>
+
+<p>Past changes currently in production appear in the <a href="https://github.com/DEFRA/waste-tracking-service/wiki/Receipt-of-Waste-API-Changelog">Receipt of Waste API changelog</a>.</p>
+<p><br>Page last updated on November 10th 2026.</p>

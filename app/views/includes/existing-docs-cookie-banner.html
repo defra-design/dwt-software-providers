@@ -1,0 +1,43 @@
+{#
+  GOV.UK cookie banner pattern for the existing docs prototype (v2, GOV.UK pattern option).
+  https://design-system.service.gov.uk/components/cookie-banner/
+  Needs docsBase set by the page. Hidden until existing-docs-cookies.js shows it, so nothing appears without JavaScript.
+#}
+{% from "govuk/components/cookie-banner/macro.njk" import govukCookieBanner %}
+{% set cookiesUrl = docsBase + "/cookies" %}
+
+{{ govukCookieBanner({
+  ariaLabel: "Cookies on the Digital Waste Tracking developer guide",
+  hidden: true,
+  attributes: { "data-app-cookie-banner": "" },
+  messages: [
+    {
+      headingText: "Cookies on the Digital Waste Tracking developer guide",
+      html: '<p class="govuk-body">We use some essential cookies to make this guide work.</p><p class="govuk-body">We’d also like to use analytics cookies so we can understand how you use the guide and make improvements.</p>',
+      attributes: { "data-app-cookie-message": "default" },
+      actions: [
+        { text: "Accept analytics cookies", type: "button", attributes: { "data-app-cookie-action": "accept" } },
+        { text: "Reject analytics cookies", type: "button", attributes: { "data-app-cookie-action": "reject" } },
+        { text: "View cookies", href: cookiesUrl }
+      ]
+    },
+    {
+      html: '<p class="govuk-body">You’ve accepted analytics cookies. You can <a class="govuk-link" href="' + cookiesUrl + '">change your cookie settings</a> at any time.</p>',
+      role: "alert",
+      hidden: true,
+      attributes: { "data-app-cookie-message": "accepted" },
+      actions: [
+        { text: "Hide cookie message", type: "button", attributes: { "data-app-cookie-action": "hide" } }
+      ]
+    },
+    {
+      html: '<p class="govuk-body">You’ve rejected analytics cookies. You can <a class="govuk-link" href="' + cookiesUrl + '">change your cookie settings</a> at any time.</p>',
+      role: "alert",
+      hidden: true,
+      attributes: { "data-app-cookie-message": "rejected" },
+      actions: [
+        { text: "Hide cookie message", type: "button", attributes: { "data-app-cookie-action": "hide" } }
+      ]
+    }
+  ]
+}) }}

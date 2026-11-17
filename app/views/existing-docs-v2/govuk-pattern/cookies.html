@@ -1,0 +1,10 @@
+{% extends "layouts/existing-docs.html" %}
+
+{% set docsBase = "/existing-docs-v2/govuk-pattern" %}
+{% set docsPageTitle = "Cookies" %}
+{% set docsCookies = "govuk" %}
+{% set docsHideCookieBanner = true %}
+
+{% block docsArticle %}
+  {% include "includes/existing-docs-content-cookies.html" %}
+{% endblock %}

@@ -1,0 +1,31 @@
+// Cookie banner and cookies page for the existing docs prototype (v2, GOV.UK pattern option).
+// The existing docs pages use Material for MkDocs styles, not application.css, so this
+// file compiles only the GOV.UK Frontend pieces the pattern needs. Nothing else is emitted.
+// Why: the GOV.UK cookie banner is not part of Material for MkDocs.
+
+@import "../../../node_modules/govuk-frontend/dist/govuk/base";
+@import "../../../node_modules/govuk-frontend/dist/govuk/core/typography";
+@import "../../../node_modules/govuk-frontend/dist/govuk/core/links";
+@import "../../../node_modules/govuk-frontend/dist/govuk/objects/width-container";
+@import "../../../node_modules/govuk-frontend/dist/govuk/objects/grid";
+@import "../../../node_modules/govuk-frontend/dist/govuk/objects/button-group";
+@import "../../../node_modules/govuk-frontend/dist/govuk/components/button/index";
+@import "../../../node_modules/govuk-frontend/dist/govuk/components/cookie-banner/index";
+@import "../../../node_modules/govuk-frontend/dist/govuk/components/radios/index";
+@import "../../../node_modules/govuk-frontend/dist/govuk/components/fieldset/index";
+@import "../../../node_modules/govuk-frontend/dist/govuk/components/error-message/index";
+@import "../../../node_modules/govuk-frontend/dist/govuk/components/notification-banner/index";
+@import "../../../node_modules/govuk-frontend/dist/govuk/components/table/index";
+
+// Keep GOV.UK text from inheriting Material's smaller root font size and reset the
+// banner's box model, so it renders as it does on GOV.UK services.
+.govuk-cookie-banner,
+.app-cookies-page {
+  box-sizing: border-box;
+  font-size: 1rem;
+}
+
+.govuk-cookie-banner *,
+.app-cookies-page * {
+  box-sizing: border-box;
+}

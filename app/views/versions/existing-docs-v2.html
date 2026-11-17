@@ -1,0 +1,82 @@
+{% extends "layouts/prototype-hub.html" %}
+
+{% set pageName = "v2: Cookies for Google Analytics" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({ text: "Back to prototype versions", href: "/" }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">API documentation prototype</span>
+    <h1 class="govuk-heading-l">v2: Cookies for Google Analytics</h1>
+
+    <p class="govuk-body">Mock-up of the cookie message on the existing GitHub Pages site (Material for MkDocs), copied from v1: Upcoming changes.</p>
+
+    <p class="govuk-body">
+      <span class="govuk-!-font-weight-bold">Date of last change:</span> 16 November 2026<br>
+      <span class="govuk-!-font-weight-bold">User research status:</span> Not tested
+    </p>
+
+    {{ govukButton({
+      html: 'View option A: Material for MkDocs cookie message<span class="govuk-visually-hidden"> for v2: Cookies for Google Analytics</span>',
+      href: "/existing-docs-v2/api-specification?reset-cookies",
+      classes: "govuk-button--secondary"
+    }) }}
+    {{ govukButton({
+      html: 'View option B: GOV.UK cookie banner pattern<span class="govuk-visually-hidden"> for v2: Cookies for Google Analytics</span>',
+      href: "/existing-docs-v2/govuk-pattern/api-specification?reset-cookies",
+      classes: "govuk-button--secondary"
+    }) }}
+
+    {{ govukInsetText({
+      html: "The choice is stored in your browser, as on the live site, so the message will not reappear. To see it again, select “Change cookie settings” in the footer, or clear this site’s data in your browser. The buttons below clear any saved choice first. To do this on any page, add ?reset-cookies to the address."
+    }) }}
+
+    <h2 class="govuk-heading-m">Changes and design rationale</h2>
+
+    <h3 class="govuk-heading-s">Context</h3>
+    <p class="govuk-body">The site needs to ask for consent before using Google Analytics. Material for MkDocs has a built-in custom cookies feature, so this version mocks what it produces rather than a bespoke design.</p>
+
+    <h3 class="govuk-heading-s">Option A: Material for MkDocs cookie message</h3>
+    <p class="govuk-body">What the built-in feature produces, with no customisation.</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Cookie message shown on first visit, with Accept, Reject and Manage settings buttons.</li>
+      <li>Manage settings reveals a Google Analytics checkbox, ticked by default. Accept then saves the choice shown.</li>
+      <li>“Change cookie settings” link in the footer reopens the message on any page.</li>
+    </ul>
+    <p class="govuk-body">Differences from the GOV.UK cookie banner pattern:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>It is a modal over the page. The GOV.UK pattern is a non-blocking banner.</li>
+      <li>There is no confirmation message after a choice is made.</li>
+      <li>There is no cookies page listing each cookie.</li>
+      <li>The checkbox is ticked by default, so cookies are on unless the user unticks it.</li>
+      <li>With settings open, the button still says “Accept”, which may be unclear when the user has unticked the box.</li>
+      <li>Without JavaScript the message does not show, so users cannot change settings.</li>
+    </ul>
+
+    <h3 class="govuk-heading-s">Option B: GOV.UK cookie banner pattern</h3>
+    <p class="govuk-body">Material customised towards the <a class="govuk-link" href="https://design-system.service.gov.uk/components/cookie-banner/">GOV.UK cookie banner component</a>. It would need a template override and extra CSS and JavaScript in the MkDocs project.</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Non-blocking banner above the header, after the skip link, with “Accept analytics cookies”, “Reject analytics cookies” and a “View cookies” link.</li>
+      <li>Confirmation message after a choice, with a link to change settings and a “Hide cookie message” button.</li>
+      <li>“Manage settings” is replaced by “View cookies”, which goes to a cookies page. The page explains the cookies and has Yes and No radios with “Save cookie settings”. The default is No, and saving shows a success message.</li>
+      <li>“Cookies” link in the footer goes to the cookies page. The banner is not shown on that page.</li>
+      <li>The banner does not show without JavaScript. The cookies page tells users they need JavaScript to change settings.</li>
+      <li>Banner and cookies page use GOV.UK Frontend components compiled into a separate stylesheet, so Material’s styles are untouched.</li>
+    </ul>
+    <p class="govuk-body">The banner and cookies page are draft copy, not agreed wording. Cookie names and expiry times (<code>_ga</code> and <code>_ga_&lt;container-id&gt;</code>, 2 years) are the standard Google Analytics 4 values and need checking against the real configuration.</p>
+
+    <h3 class="govuk-heading-s">Questions</h3>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Is Google Analytics the only optional cookie, or are others needed?</li>
+      <li>Who owns the cookie wording and the cookies page?</li>
+      <li>Can the MkDocs project take a template override, extra CSS and JavaScript for option B?</li>
+      <li>Does the guide set any other cookies that need listing on the cookies page?</li>
+    </ul>
+
+  </div>
+</div>
+{% endblock %}

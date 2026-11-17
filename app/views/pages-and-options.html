@@ -1,0 +1,89 @@
+{% extends "layouts/prototype-hub.html" %}
+
+{% set pageName = "Pages and options" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({ text: "Back to prototype versions", href: "/" }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-l">Pages and options</h1>
+
+    <p class="govuk-body">Every page or feature we have designed for the existing documentation site, with each option, why it exists and where it has got to.</p>
+
+    <h2 class="govuk-heading-m">How to read this page</h2>
+    <ul class="govuk-list govuk-list--bullet">
+      <li><strong>Version:</strong> a frozen snapshot of the prototype that can be tested or reviewed. It does not change once shared.</li>
+      <li><strong>Option:</strong> one idea for a single page or feature, inside a version. A version can hold several options.</li>
+      <li><strong>Purpose:</strong> ideation (exploring ideas), research (ready to test with users) or handover (agreed, being passed to developers).</li>
+    </ul>
+
+  </div>
+  <div class="govuk-grid-column-full">
+
+    <table class="govuk-table">
+      <caption class="govuk-table__caption govuk-table__caption--m">Existing documentation site</caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Page or feature</th>
+          <th scope="col" class="govuk-table__header">Option</th>
+          <th scope="col" class="govuk-table__header">Version</th>
+          <th scope="col" class="govuk-table__header">Purpose</th>
+          <th scope="col" class="govuk-table__header">Research status</th>
+          <th scope="col" class="govuk-table__header">Links</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header">Upcoming API changes page</th>
+          <td class="govuk-table__cell">Single design</td>
+          <td class="govuk-table__cell">v1: Upcoming changes</td>
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">Handover</strong></td>
+          <td class="govuk-table__cell">Not tested</td>
+          <td class="govuk-table__cell">
+            <a class="govuk-link" href="/existing-docs/upcoming-changes">Prototype<span class="govuk-visually-hidden"> for upcoming API changes page</span></a><br>
+            <a class="govuk-link" href="/versions/existing-docs">Rationale<span class="govuk-visually-hidden"> for upcoming API changes page</span></a><br>
+            <a class="govuk-link" href="/jira-tickets/dwtspi-520">DWTSPI-520</a>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header" rowspan="2">Cookie message for Google Analytics</th>
+          <td class="govuk-table__cell">A: Material for MkDocs cookie message</td>
+          <td class="govuk-table__cell">v2: Cookies for Google Analytics</td>
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">Ideation</strong></td>
+          <td class="govuk-table__cell">Not tested</td>
+          <td class="govuk-table__cell">
+            <a class="govuk-link" href="/existing-docs-v2/api-specification?reset-cookies">Prototype<span class="govuk-visually-hidden"> for option A</span></a><br>
+            <a class="govuk-link" href="/versions/existing-docs-v2">Rationale<span class="govuk-visually-hidden"> for option A</span></a>
+          </td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell">B: GOV.UK cookie banner pattern</td>
+          <td class="govuk-table__cell">v2: Cookies for Google Analytics</td>
+          <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--blue">Ideation</strong></td>
+          <td class="govuk-table__cell">Not tested</td>
+          <td class="govuk-table__cell">
+            <a class="govuk-link" href="/existing-docs-v2/govuk-pattern/api-specification?reset-cookies">Prototype<span class="govuk-visually-hidden"> for option B</span></a><br>
+            <a class="govuk-link" href="/versions/existing-docs-v2">Rationale<span class="govuk-visually-hidden"> for option B</span></a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+  </div>
+  <div class="govuk-grid-column-two-thirds">
+
+    <h2 class="govuk-heading-m">Recording a new page or option</h2>
+    <ol class="govuk-list govuk-list--number">
+      <li>Add the option as a sub-folder inside the current version, or a new version if the whole site changes. Each page extends <code>layouts/existing-docs.html</code> and includes its content from <code>includes/</code>, so only what differs needs its own copy.</li>
+      <li>Add a row to the table above, with its purpose and research status.</li>
+      <li>Record what changed and which research finding or decision drove it on the version’s rationale page.</li>
+      <li>When an option is agreed, change its purpose to handover and link the Jira ticket and developer files.</li>
+    </ol>
+
+  </div>
+</div>
+{% endblock %}

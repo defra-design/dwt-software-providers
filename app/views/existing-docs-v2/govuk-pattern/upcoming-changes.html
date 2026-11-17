@@ -1,0 +1,11 @@
+{% extends "layouts/existing-docs.html" %}
+
+{% set docsBase = "/existing-docs-v2/govuk-pattern" %}
+{% set docsPageTitle = "Upcoming API changes" %}
+{% set docsCurrent = "upcoming-changes" %}
+{% set docsGovukTags = true %}
+{% set docsCookies = "govuk" %}
+
+{% block docsArticle %}
+  {% include "includes/existing-docs-content-upcoming-changes.html" %}
+{% endblock %}
