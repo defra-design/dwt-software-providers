@@ -3,3 +3,14 @@
 .md-typeset h2 {
   margin-top: 2.8em;
 }
+
+/* Cookie message as a pop-up rather than a modal (option D): hide the dark overlay
+   so the page behind stays visible. Added with docsConsentNoModal. */
+.md-consent--popup .md-consent__overlay {
+  display: none;
+}
+
+/* Explanatory text above the Google Analytics checkbox (option D). */
+.md-consent__detail > :first-child {
+  margin-top: 0;
+}

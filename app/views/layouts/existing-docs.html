@@ -8,8 +8,10 @@
     docsCurrent    "api-specification" or "upcoming-changes" to mark the navigation; leave unset otherwise
     docsGovukTags  true to load the GOV.UK-style tag CSS
     docsHideCookieBanner  true on the cookies page, so the banner is not shown there
-    docsConsentTitle, docsConsentDescription, docsConsentAccept, docsConsentReject, docsConsentManage
-                   optional wording for the Material cookie message (see includes/existing-docs-material-consent.html)
+    docsConsentTitle, docsConsentDescription, docsConsentAccept, docsConsentReject, docsConsentManage, docsConsentAnalyticsLabel, docsConsentAnalyticsDetail,
+                   docsConsentAnalyticsUnticked, docsConsentNoModal,
+                   docsConsentSimple (buttons only, no checkbox or manage button), docsConsentFooterLink
+                   optional wording for the Material cookie message; Detail is HTML shown under the checkbox; Unticked and NoModal are true/unset (see includes/existing-docs-material-consent.html)
     docsCookies    "material" for the Material cookie message, "govuk" for the GOV.UK banner, or unset
   Put the page content in {% block docsArticle %}.
 
@@ -1062,7 +1064,7 @@
       , except where otherwise stated <br><br><br>
       <a href="{{ docsBase }}/api-accessibility-statement" target="_blank" rel="noopener">Accessibility Statement</a>
       {% if docsCookies == "material" %}<br><br>
-      <a href="#__consent">Change cookie settings</a>
+      <a href="#__consent">{{ docsConsentFooterLink | default("Change cookie settings") }}</a>
       {% elif docsCookies == "govuk" %}<br><br>
       <a href="{{ docsBase }}/cookies">Cookies</a>
       {% endif %}
@@ -1086,6 +1088,19 @@
       /* Add ?reset-cookies to the address to clear the saved choice (prototype aid only). */
       if (/[?&]reset-cookies\b/.test(location.search)) { __md_set("__consent", null) }
       if (!__md_get("__consent")) { location.replace("#__consent") }
+      {% if docsConsentSimple %}
+      /* Buttons only: Accept turns analytics on, Reject leaves it off. Either saves the choice and hides the message. */
+      (function () {
+        var form = document.getElementById("__consent");
+        function save(analytics) {
+          __md_set("__consent", { analytics: analytics });
+          form.hidden = true;
+          history.replaceState(null, "", location.pathname + location.search);
+        }
+        form.addEventListener("submit", function (e) { e.preventDefault(); save(true); });
+        form.querySelector("[data-consent-reject]").addEventListener("click", function () { save(false); });
+      })();
+      {% endif %}
     </script>
     {% endif %}
     <div class="md-dialog" data-md-component="dialog">

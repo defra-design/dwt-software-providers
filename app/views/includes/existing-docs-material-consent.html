@@ -1,5 +1,5 @@
 {# Material for MkDocs cookie message. Wording can be set by the page; see layouts/existing-docs.html. #}
-    <form class="md-consent" data-md-component="consent" id="__consent" hidden>
+    <form class="md-consent{% if docsConsentNoModal %} md-consent--popup{% endif %}" data-md-component="consent" id="__consent" hidden>
       <div class="md-consent__overlay"></div>
       <aside class="md-consent__inner">
         <div class="md-consent__form md-typeset">
@@ -8,22 +8,31 @@
           <p>We use Google Analytics cookies to understand how people use this guide, so we can improve it. These cookies are optional.</p>
           <p>You can change your cookie settings at any time using the &ldquo;Change cookie settings&rdquo; link in the footer.</p>
           {% endif %}
+          {% if docsConsentSimple %}
+          <div class="md-consent__detail">{{ docsConsentAnalyticsDetail | safe }}</div>
+          {% else %}
           <input class="md-toggle" type="checkbox" id="__settings">
           <div class="md-consent__settings">
+            {% if docsConsentAnalyticsDetail %}<div class="md-consent__detail" id="analytics-detail">{{ docsConsentAnalyticsDetail | safe }}</div>{% endif %}
             <ul class="task-list">
               <li class="task-list-item">
                 <label class="task-list-control">
-                  <input type="checkbox" name="analytics" checked>
+                  <input type="checkbox" name="analytics"{% if not docsConsentAnalyticsUnticked %} checked{% endif %}{% if docsConsentAnalyticsDetail %} aria-describedby="analytics-detail"{% endif %}>
                   <span class="task-list-indicator"></span>
-                  Google Analytics
+                  {{ docsConsentAnalyticsLabel | default("Google Analytics") }}
                 </label>
               </li>
             </ul>
           </div>
+          {% endif %}
           <div class="md-consent__controls">
             <button class="md-button md-button--primary">{{ docsConsentAccept | default("Accept") }}</button>
+            {% if docsConsentSimple %}
+            <button type="button" class="md-button md-button--primary" data-consent-reject>{{ docsConsentReject | default("Reject") }}</button>
+            {% else %}
             <button type="reset" class="md-button md-button--primary">{{ docsConsentReject | default("Reject") }}</button>
             <label class="md-button" for="__settings">{{ docsConsentManage | default("Manage settings") }}</label>
+            {% endif %}
           </div>
         </div>
       </aside>

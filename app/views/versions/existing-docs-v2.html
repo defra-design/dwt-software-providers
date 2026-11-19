@@ -16,7 +16,7 @@
     <p class="govuk-body">Mock-up of the cookie message on the existing GitHub Pages site (Material for MkDocs), copied from v1: Upcoming changes.</p>
 
     <p class="govuk-body">
-      <span class="govuk-!-font-weight-bold">Date of last change:</span> 16 November 2026<br>
+      <span class="govuk-!-font-weight-bold">Date of last change:</span> 19 November 2026<br>
       <span class="govuk-!-font-weight-bold">User research status:</span> Not tested
     </p>
 
@@ -34,6 +34,12 @@
     {{ govukButton({
       html: 'View option C: Material cookie message with GOV.UK-style wording<span class="govuk-visually-hidden"> for v2: Cookies for Google Analytics</span>',
       href: "/existing-docs-v2/option-c/api-specification?reset-cookies",
+      classes: "govuk-button--secondary"
+    }) }}
+
+    {{ govukButton({
+      html: 'View option D: Material cookie message, analytics only<span class="govuk-visually-hidden"> for v2: Cookies for Google Analytics</span>',
+      href: "/existing-docs-v2/option-d/api-specification?reset-cookies",
       classes: "govuk-button--secondary"
     }) }}
 
@@ -84,6 +90,18 @@
       <li>“View cookies” replaces “Manage settings”. It reveals the Google Analytics checkbox in the message, rather than going to a cookies page.</li>
     </ul>
     <p class="govuk-body">Still different from the GOV.UK pattern: it is a modal, has no confirmation message or cookies page, and the checkbox is ticked by default. “View cookies” does not take the user to a page, which may not match what the label suggests. The “Accept analytics cookies” button also saves the checkbox state, so it may be unclear if the user has unticked the box. The text does not say how to change settings later, though the footer link still does this.</p>
+
+    <h3 class="govuk-heading-s">Option D: Material for MkDocs cookie message, analytics only</h3>
+    <p class="govuk-body">Based on option A. The tech lead confirmed that, with only one optional cookie, the message can be buttons only. This also removes the checkbox, which fails colour contrast.</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Title: “Cookies for Digital waste tracking developer guide”.</li>
+      <li>Text: “We use analytics cookies so we can understand how you use the service and make improvements.” then “We use Google Analytics cookies to measure:” and a list of what they measure: how you got to the site, the pages you visit and how long you spend on each, and what you click on.</li>
+      <li>Buttons: “Accept analytics cookies” and “Reject analytics cookies”. There is no “View cookies” button, checkbox or label.</li>
+      <li>Selecting either button saves the choice and hides the message. Analytics stays off until the user accepts.</li>
+      <li>The footer link “Change your cookie settings” reopens the message.</li>
+      <li>A pop-up, not a modal: there is no dark overlay, so the page behind stays visible.</li>
+    </ul>
+    <p class="govuk-body">The Material message has no close (x) button, so that state has not been mocked. The supplied text said “this sites”, which is corrected to “this site”. In this prototype the choice is saved in the browser but no analytics are switched on or off.</p>
 
     <h3 class="govuk-heading-s">Questions</h3>
     <ul class="govuk-list govuk-list--bullet">
