@@ -1,0 +1,96 @@
+{% extends "layouts/prototype-hub.html" %}
+
+{% set pageName = "DWTSPI-486: Add a cookie banner for Google Analytics" %}
+
+{% block beforeContent %}
+  {{ govukBackLink({ text: "Back to Jira tickets", href: "/jira-tickets" }) }}
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <span class="govuk-caption-l">Jira ticket DWTSPI-486</span>
+    <h1 class="govuk-heading-l">Add a cookie banner for Google Analytics</h1>
+
+    <p class="govuk-body"><strong>Clickable prototype:</strong> <a class="govuk-link" href="/existing-docs-v2/option-d/api-specification?reset-cookies">v2: Cookies for Google Analytics, option D</a>. This is also the design reference.</p>
+
+    <h2 class="govuk-heading-m">User story</h2>
+    <p class="govuk-body"><strong>As a</strong> software provider reading the developer guide,<br><strong>I want</strong> to choose whether analytics cookies are used,<br><strong>so that</strong> the guide only measures my use of it if I agree.</p>
+
+    <h2 class="govuk-heading-m">Context</h2>
+    <p class="govuk-body">The guide needs to ask for consent before using Google Analytics. This is option D, based on the Material for MkDocs cookie message. The tech lead confirmed that, with only one optional cookie, the message can be buttons only. This also removes the checkbox, which fails colour contrast.</p>
+
+    <h2 class="govuk-heading-m">Components and patterns</h2>
+    <ul class="govuk-list govuk-list--bullet">
+      <li><strong>Cookie message</strong>: the built-in Material for MkDocs custom cookies feature, with its wording changed. No new components. Related guidance: <a class="govuk-link" href="https://design-system.service.gov.uk/components/cookie-banner/">Cookie banner</a>. This option does not follow that pattern fully (see out of scope).</li>
+    </ul>
+
+    <h2 class="govuk-heading-m">Design specification</h2>
+    <h3 class="govuk-heading-s">Cookie message</h3>
+    <ol class="govuk-list">
+      <li>D1. The message is shown on a user’s first visit, as a pop-up with no dark overlay, so the page behind stays visible.</li>
+      <li>D2. The title is “Cookies for Digital waste tracking developer guide”.</li>
+      <li>D3. The text is “We use analytics cookies so we can understand how you use the service and make improvements.”</li>
+      <li>D4. Below that is “We use these cookies to measure:” followed by a bulleted list:
+        <ul class="govuk-list govuk-list--bullet">
+          <li>how you got to this site</li>
+          <li>the pages you visit and how long you spend on each page</li>
+          <li>what you click on while you’re visiting this site</li>
+        </ul>
+      </li>
+      <li>D5. The only controls are the buttons “Accept analytics cookies” and “Reject analytics cookies”. There is no “View cookies” button, checkbox or label.</li>
+      <li>D6. Selecting either button saves the choice and hides the message. Analytics stays off until the user accepts.</li>
+    </ol>
+    <h3 class="govuk-heading-s">Footer</h3>
+    <ol class="govuk-list">
+      <li>D7. The footer has a link “Change your cookie settings”, which reopens the message on any page.</li>
+      <li>D8. The pages match the design reference.</li>
+    </ol>
+
+    <h2 class="govuk-heading-m">Acceptance criteria</h2>
+    <ol class="govuk-list govuk-list--number">
+      <li>Given a user has not made a choice, when they open any page, then the cookie message is shown.</li>
+      <li>Given the message is shown, when the user selects “Accept analytics cookies”, then the message is hidden and analytics cookies are allowed.</li>
+      <li>Given the message is shown, when the user selects “Reject analytics cookies”, then the message is hidden and analytics cookies are not set.</li>
+      <li>Given a user has made a choice, when they open another page, then the message is not shown.</li>
+      <li>Given a user has made a choice, when they select “Change your cookie settings” in the footer, then the message is shown again.</li>
+      <li>Given a user has not accepted, then no Google Analytics cookies are set.</li>
+    </ol>
+
+    <h2 class="govuk-heading-m">Accessibility acceptance criteria</h2>
+    <ol class="govuk-list govuk-list--number">
+      <li>The buttons and the text meet the minimum colour contrast of 4.5:1 for text and 3:1 for button boundaries (1.4.3, 1.4.11).</li>
+      <li>The list of what the cookies measure is a real list (1.3.1).</li>
+      <li>Every function works with a keyboard, in a logical order, with a visible focus state (2.1.1, 2.4.3, 2.4.7).</li>
+      <li>The footer link text describes what it does, and the buttons’ names say what they do (2.4.4, 4.1.2).</li>
+      <li>There is no horizontal scrolling at 320px wide or at 200% zoom (1.4.4, 1.4.10).</li>
+    </ol>
+    <h3 class="govuk-heading-s">How to test</h3>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Run an automated check (axe or WAVE).</li>
+      <li>Use the message and the footer link with a keyboard only.</li>
+      <li>Use a screen reader (NVDA or VoiceOver) to check the message and buttons.</li>
+      <li>Check at 320px wide and at 200% zoom.</li>
+    </ul>
+
+    <h2 class="govuk-heading-m">Accessibility statement</h2>
+    <p class="govuk-body"><strong>Failed: 2.4.11 Focus Not Obscured (Minimum), level AA.</strong> With the page scrolled to the bottom, the pop-up covers the footer links, including “Change your cookie settings” and “Accessibility Statement”, and the lower part of the left-hand navigation. The page cannot scroll further.</p>
+    <p class="govuk-body">A keyboard user tabbing through the footer cannot see the focused link, and cannot dismiss the message without moving focus past those links.</p>
+
+    <h2 class="govuk-heading-m">Out of scope</h2>
+    <p class="govuk-body">The team is accepting these usability shortfalls because it is moving to GOV.UK Frontend soon and will put the effort there.</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>The message does not appear without JavaScript, so those users never see it and analytics stays off.</li>
+      <li>When the message is reopened, it does not show the user’s earlier choice.</li>
+      <li>Accept and reject have equal visual weight, which does not follow the GOV.UK cookie banner pattern.</li>
+      <li>There is no confirmation message after a choice and no separate cookies page.</li>
+      <li>The message has no close (x) button, so that state is not designed.</li>
+      <li>Fixing the accessibility failure above (2.4.11): the message covers the footer and the focused link, and is last in the tab order.</li>
+      <li>The prototype saves the choice in the browser only. It does not switch real analytics on or off.</li>
+      <li>Cookie names and expiry times have not been confirmed.</li>
+    </ul>
+
+  </div>
+</div>
+{% endblock %}
